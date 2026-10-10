@@ -1,0 +1,1679 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Protein Station | Elite Health Hub & Menu, Basavanagudi</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                    },
+                    colors: {
+                        obsidian: {
+                            950: '#090d0b',
+                            900: '#0f1713',
+                            800: '#16221c',
+                            700: '#1e2e26',
+                            600: '#283d33',
+                        },
+                        emeraldGlow: {
+                            400: '#34d399',
+                            500: '#10b981',
+                            600: '#059669',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0f1713;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #283d33;
+            border-radius: 9999px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #34d399;
+        }
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        .glass-panel {
+            background: rgba(22, 34, 28, 0.7);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(52, 211, 153, 0.15);
+        }
+        .glass-card {
+            background: rgba(15, 23, 19, 0.85);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+        }
+    </style>
+</head>
+<body class="bg-obsidian-950 text-slate-100 font-sans antialiased min-h-screen flex flex-col justify-between selection:bg-emerald-500 selection:text-obsidian-950">
+
+    <header class="sticky top-0 z-40 bg-obsidian-900/90 backdrop-blur-xl border-b border-emerald-500/10 shadow-2xl transition-all">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-4">
+            <!-- Brand Info -->
+            <div class="flex items-center gap-3">
+                <div class="w-12 h-12 rounded-2xl bg-gradient-to-tr from-emerald-600 to-emerald-400 flex items-center justify-center text-obsidian-950 shadow-lg shadow-emerald-500/20 font-extrabold text-xl">
+                    <i class="fa-solid fa-bolt text-xl"></i>
+                </div>
+                <div>
+                    <h1 class="text-xl font-extrabold tracking-tight text-white flex items-center gap-2">
+                        Protein Station
+                        <span class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
+                            <i class="fa-solid fa-circle text-[6px] mr-1 animate-pulse text-emerald-400"></i> Basavanagudi
+                        </span>
+                    </h1>
+                    <p class="text-xs text-slate-400 font-medium flex items-center gap-2 mt-0.5">
+                        <span class="text-emerald-400 font-semibold"><i class="fa-solid fa-star text-[10px]"></i> 4.3 (219)</span>
+                    </p>
+                </div>
+            </div>
+
+            <!-- Actions: Macro Calculator, Admin Panel & Cart -->
+            <div class="flex items-center gap-2 sm:gap-3">
+                <!-- Admin Panel Trigger Button -->
+                <button onclick="toggleAdminModal()" class="relative flex items-center gap-2 bg-obsidian-800 hover:bg-obsidian-700 text-slate-200 border border-emerald-500/30 px-3.5 py-2.5 rounded-xl font-bold text-xs sm:text-sm transition-all shadow-lg active:scale-95" title="Manage Menu & Live Orders">
+                    <i class="fa-solid fa-gear text-emerald-400"></i>
+                    <span class="hidden md:inline">Admin Panel</span>
+                    <span id="adminOrdersBadge" class="absolute -top-1.5 -right-1.5 bg-rose-500 text-white text-[10px] font-black w-5 h-5 rounded-full flex items-center justify-center shadow-md hidden">0</span>
+                </button>
+
+                <!-- Macro Engine Trigger Button -->
+                <button onclick="toggleMacroModal()" class="flex items-center gap-2 bg-emerald-500/10 hover:bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 px-3.5 py-2.5 rounded-xl font-bold text-xs sm:text-sm transition-all shadow-lg shadow-emerald-500/5 active:scale-95">
+                    <i class="fa-solid fa-calculator text-base"></i>
+                    <span class="hidden sm:inline">Macro Calculator</span>
+                    <span class="sm:hidden">Macros</span>
+                </button>
+
+                <!-- Cart Button -->
+                <button onclick="toggleCart()" class="relative flex items-center gap-2.5 bg-emerald-500 hover:bg-emerald-400 text-obsidian-950 px-4 sm:px-5 py-2.5 rounded-xl font-extrabold text-xs sm:text-sm transition-all shadow-lg shadow-emerald-500/20 active:scale-95">
+                    <i class="fa-solid fa-bag-shopping text-lg"></i>
+                    <span class="hidden sm:inline">Cart</span>
+                    <span id="cartCountBadge" class="absolute -top-1.5 -right-1.5 bg-obsidian-950 text-emerald-400 border-2 border-emerald-500 text-xs font-black w-6 h-6 rounded-full flex items-center justify-center shadow-md scale-100">0</span>
+                </button>
+            </div>
+        </div>
+
+        <div class="px-4 pb-3 sm:hidden">
+            <div class="relative w-full">
+                <span class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                </span>
+                <input type="text" id="mobileSearchInput" placeholder="Search high-protein dishes, salads..." class="w-full pl-10 pr-4 py-2 bg-obsidian-800 border border-emerald-500/20 rounded-xl text-sm text-slate-100 focus:outline-none focus:ring-2 focus:ring-emerald-500">
+            </div>
+        </div>
+    </header>
+
+    <main class="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 w-full">
+        <!-- Hero Banner -->
+        <div class="relative overflow-hidden rounded-3xl glass-panel p-6 sm:p-10 mb-8 border border-emerald-500/20 bg-gradient-to-r from-obsidian-900 via-obsidian-800 to-emerald-950/40 shadow-2xl">
+            <div class="absolute right-0 top-0 w-96 h-96 bg-emerald-500/10 rounded-full blur-3xl pointer-events-none"></div>
+            <div class="relative z-10 max-w-2xl">
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight mb-3">
+                    Fuel Your Gains with Precision Nutrition
+                </h2>
+                <p class="text-slate-300 text-sm sm:text-base leading-relaxed mb-6">
+                    Welcome to Basavanagudi's premier healthy food destination. Every dish is meticulously crafted with precise macronutrient tracking to power your fitness journey without compromising taste.
+                </p>
+                <div class="flex flex-wrap items-center gap-3">
+                    <button onclick="toggleMacroModal()" class="bg-emerald-500 hover:bg-emerald-400 text-obsidian-950 font-extrabold px-6 py-3 rounded-xl text-sm transition-all shadow-lg shadow-emerald-500/25 flex items-center gap-2">
+                        <i class="fa-solid fa-wand-magic-sparkles"></i> Get AI Diet Recommendation
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="sticky top-20 z-30 bg-obsidian-950/90 backdrop-blur-md pt-2 pb-4 mb-6">
+            <div class="flex items-center justify-between mb-3 gap-4">
+                <div class="flex items-center gap-2 overflow-x-auto hide-scrollbar py-1" id="categoryTabs">
+                    <!-- Category buttons generated by JS -->
+                </div>
+                <div class="relative hidden sm:block w-64 shrink-0">
+                    <span class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                    </span>
+                    <input type="text" id="searchInput" placeholder="Search dishes..." class="w-full pl-10 pr-4 py-2 bg-obsidian-900 border border-emerald-500/20 rounded-xl text-sm text-slate-100 focus:outline-none focus:ring-2 focus:ring-emerald-500">
+                </div>
+            </div>
+            <div class="flex items-center justify-between flex-wrap gap-3 text-xs font-semibold">
+                <div class="flex items-center gap-2">
+                    <button onclick="setDietFilter('all')" id="filterAll" class="px-3.5 py-1.5 rounded-lg bg-emerald-500 text-obsidian-950 transition-all font-bold shadow-md shadow-emerald-500/20">All Items</button>
+                    <button onclick="setDietFilter('veg')" id="filterVeg" class="px-3.5 py-1.5 rounded-lg bg-obsidian-900 border border-emerald-500/20 hover:bg-obsidian-800 text-slate-300 transition-all"><i class="fa-solid fa-circle text-[8px] text-emerald-400 mr-1.5"></i> Veg Only</button>
+                    <button onclick="setDietFilter('nonveg')" id="filterNonVeg" class="px-3.5 py-1.5 rounded-lg bg-obsidian-900 border border-emerald-500/20 hover:bg-obsidian-800 text-slate-300 transition-all"><i class="fa-solid fa-circle text-[8px] text-rose-500 mr-1.5"></i> Non-Veg</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="menuContainer" class="space-y-12">
+            <!-- Rendered dynamically by JavaScript -->
+        </div>
+    </main>
+
+    <!-- SECURE ADMIN LOGIN & DASHBOARD MODAL -->
+    <div id="adminModal" class="fixed inset-0 bg-obsidian-950/80 backdrop-blur-md z-50 hidden flex items-center justify-center p-4">
+        <!-- Login View Container -->
+        <div id="adminLoginView" class="glass-card rounded-3xl max-w-md w-full p-6 sm:p-8 shadow-2xl border border-emerald-500/30 transform scale-95 opacity-0 transition-all duration-300">
+            <div class="flex items-center justify-between mb-6 pb-4 border-b border-emerald-500/20">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-xl bg-emerald-500/10 text-emerald-400 flex items-center justify-center text-lg border border-emerald-500/20">
+                        <i class="fa-solid fa-lock"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-extrabold text-white">Admin Authentication</h3>
+                        <p class="text-xs text-slate-400">Restricted access for restaurant staff.</p>
+                    </div>
+                </div>
+                <button onclick="toggleAdminModal()" class="w-9 h-9 rounded-xl bg-obsidian-800 hover:bg-obsidian-700 text-slate-400 hover:text-white flex items-center justify-center transition-all border border-emerald-500/20">
+                    <i class="fa-solid fa-xmark text-lg"></i>
+                </button>
+            </div>
+
+            <div class="space-y-4">
+                <div>
+                    <label class="block text-xs font-semibold text-slate-300 mb-1.5">Admin Email</label>
+                    <input type="email" id="adminLoginEmail" placeholder="Enter admin email" class="w-full bg-obsidian-900 border border-emerald-500/20 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:ring-2 focus:ring-emerald-500">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold text-slate-300 mb-1.5">Admin Password</label>
+                    <input type="password" id="adminLoginPassword" placeholder="Enter password" class="w-full bg-obsidian-900 border border-emerald-500/20 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:ring-2 focus:ring-emerald-500">
+                </div>
+                <div id="adminLoginErrorMsg" class="text-xs text-rose-400 font-bold hidden bg-rose-500/10 border border-rose-500/20 p-2.5 rounded-xl text-center">
+                    Invalid credentials
+                </div>
+                <button onclick="handleAdminLogin()" class="w-full bg-gradient-to-r from-emerald-500 to-emerald-600 hover:from-emerald-400 hover:to-emerald-500 text-obsidian-950 font-extrabold py-3.5 px-4 rounded-xl shadow-lg shadow-emerald-500/25 transition-all flex items-center justify-center gap-2 text-sm mt-2">
+                    <i class="fa-solid fa-right-to-bracket"></i> Login to Admin Panel
+                </button>
+            </div>
+        </div>
+
+        <!-- Dashboard Panel View (Hidden until authenticated) -->
+        <div id="adminDashboardView" class="glass-card rounded-3xl max-w-4xl w-full p-6 sm:p-8 shadow-2xl border border-emerald-500/30 transform scale-95 opacity-0 transition-all duration-300 max-h-[92vh] overflow-y-auto hidden">
+            <div class="flex items-center justify-between mb-6 pb-4 border-b border-emerald-500/20">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-xl bg-emerald-500/10 text-emerald-400 flex items-center justify-center text-lg border border-emerald-500/20">
+                        <i class="fa-solid fa-gear"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-extrabold text-white">Restaurant Admin & Kitchen Display</h3>
+                        <p class="text-xs text-slate-400">View live table orders, edit table numbers, add items, or manage menu.</p>
+                    </div>
+                </div>
+                <div class="flex items-center gap-2">
+                    <button onclick="adminLogout()" class="px-3 py-2 rounded-xl bg-obsidian-800 hover:bg-obsidian-700 text-rose-400 font-bold text-xs border border-rose-500/30 transition-all" title="Logout">
+                        <i class="fa-solid fa-arrow-right-from-bracket mr-1"></i> Logout
+                    </button>
+                    <button onclick="toggleAdminModal()" class="w-9 h-9 rounded-xl bg-obsidian-800 hover:bg-obsidian-700 text-slate-400 hover:text-white flex items-center justify-center transition-all border border-emerald-500/20">
+                        <i class="fa-solid fa-xmark text-lg"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Admin Tabs Navigation -->
+            <div class="flex items-center gap-2 mb-6 border-b border-emerald-500/10 pb-4 overflow-x-auto hide-scrollbar">
+                <button onclick="switchAdminTab('orders')" id="adminTabOrdersBtn" class="px-4 py-2 rounded-xl text-xs sm:text-sm font-extrabold bg-emerald-500 text-obsidian-950 shadow-md transition-all flex items-center gap-2 shrink-0">
+                    <i class="fa-solid fa-receipt"></i> Live Table Orders <span id="ordersTabCount" class="bg-obsidian-950 text-emerald-400 px-1.5 py-0.5 rounded-full text-[10px]">0</span>
+                </button>
+                <button onclick="switchAdminTab('tables')" id="adminTabTablesBtn" class="px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-obsidian-900 text-slate-300 hover:text-white border border-emerald-500/20 transition-all flex items-center gap-2 shrink-0">
+                    <i class="fa-solid fa-chair"></i> Change Table & Location
+                </button>
+                <button onclick="switchAdminTab('logo')" id="adminTabLogoBtn" class="px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-obsidian-900 text-slate-300 hover:text-white border border-emerald-500/20 transition-all flex items-center gap-2 shrink-0">
+                    <i class="fa-solid fa-image"></i> Change Logo
+                </button>
+                <button onclick="switchAdminTab('add')" id="adminTabAddBtn" class="px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-obsidian-900 text-slate-300 hover:text-white border border-emerald-500/20 transition-all flex items-center gap-2 shrink-0">
+                    <i class="fa-solid fa-plus"></i> Add New Item
+                </button>
+                <button onclick="switchAdminTab('manage')" id="adminTabManageBtn" class="px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-obsidian-900 text-slate-300 hover:text-white border border-emerald-500/20 transition-all flex items-center gap-2 shrink-0">
+                    <i class="fa-solid fa-list-check"></i> Manage & Edit Menu
+                </button>
+            </div>
+
+            <!-- LIVE ORDERS / KDS SECTION -->
+            <div id="adminOrdersSection" class="space-y-4">
+                <div class="flex items-center justify-between">
+                    <h4 class="text-sm font-extrabold text-white uppercase tracking-wider">Incoming Table Orders (Kitchen Display)</h4>
+                    <button onclick="renderAdminOrdersList()" class="text-xs text-emerald-400 hover:underline"><i class="fa-solid fa-rotate mr-1"></i> Refresh</button>
+                </div>
+                <div id="adminOrdersContainer" class="space-y-3 max-h-[55vh] overflow-y-auto pr-2">
+                    <!-- Populated dynamically -->
+                </div>
+            </div>
+
+            <!-- CHANGE TABLE & LOCATION SEPARATE TAB SECTION -->
+            <div id="adminTablesSection" class="space-y-4 hidden">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <h4 class="text-sm font-extrabold text-white uppercase tracking-wider">Table Number & Location Management</h4>
+                        <p class="text-xs text-slate-400 mt-0.5">Quickly reassign table seating or delivery locations for any active order.</p>
+                    </div>
+                    <button onclick="renderAdminTablesList()" class="text-xs text-emerald-400 hover:underline"><i class="fa-solid fa-rotate mr-1"></i> Refresh</button>
+                </div>
+                <div id="adminTablesContainer" class="space-y-3 max-h-[55vh] overflow-y-auto pr-2">
+                    <!-- Populated dynamically -->
+                </div>
+            </div>
+
+            <!-- CHANGE LOGO SECTION -->
+            <div id="adminLogoSection" class="space-y-4 hidden">
+                <h4 class="text-sm font-extrabold text-white uppercase tracking-wider mb-2">Customize Restaurant Brand & Logo</h4>
+                <div class="bg-obsidian-900 p-5 rounded-2xl border border-emerald-500/20 space-y-4">
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-300 mb-1.5">Restaurant Brand Name</label>
+                        <input type="text" id="adminBrandNameInput" value="Protein Station" class="w-full bg-obsidian-950 border border-emerald-500/30 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:ring-2 focus:ring-emerald-500">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-300 mb-1.5">Logo Icon (FontAwesome class e.g. fa-bolt, fa-dumbbell, fa-heart-pulse)</label>
+                        <input type="text" id="adminLogoIconInput" value="fa-bolt" class="w-full bg-obsidian-950 border border-emerald-500/30 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:ring-2 focus:ring-emerald-500">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-300 mb-1.5">Or Custom Logo Image URL (Optional)</label>
+                        <input type="text" id="adminLogoImgInput" placeholder="https://example.com/logo.png" class="w-full bg-obsidian-950 border border-emerald-500/30 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:ring-2 focus:ring-emerald-500">
+                    </div>
+                    <button onclick="handleSaveLogo()" class="w-full bg-gradient-to-r from-emerald-500 to-emerald-600 hover:from-emerald-400 hover:to-emerald-500 text-obsidian-950 font-extrabold py-3.5 px-4 rounded-xl shadow-lg shadow-emerald-500/25 transition-all flex items-center justify-center gap-2 text-sm mt-2">
+                        <i class="fa-solid fa-floppy-disk"></i> Update Logo & Brand
+                    </button>
+                </div>
+            </div>
+
+            <!-- ADD NEW ITEM SECTION -->
+            <div id="adminAddSection" class="space-y-4 hidden">
+                <h4 class="text-sm font-extrabold text-white uppercase tracking-wider mb-2">Create New Menu Item</h4>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-300 mb-1.5">Dish Name</label>
+                        <input type="text" id="newDishName" placeholder="e.g. Super Green Power Bowl" class="w-full bg-obsidian-900 border border-emerald-500/20 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:ring-2 focus:ring-emerald-500">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-300 mb-1.5">Category</label>
+                        <select id="newDishCategory" class="w-full bg-obsidian-900 border border-emerald-500/20 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:ring-2 focus:ring-emerald-500">
+                            <!-- Populated dynamically -->
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-300 mb-1.5">Price (₹)</label>
+                        <input type="number" id="newDishPrice" placeholder="349" class="w-full bg-obsidian-900 border border-emerald-500/20 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:ring-2 focus:ring-emerald-500">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-300 mb-1.5">Diet Type</label>
+                        <select id="newDishType" class="w-full bg-obsidian-900 border border-emerald-500/20 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:ring-2 focus:ring-emerald-500">
+                            <option value="veg">Vegetarian</option>
+                            <option value="nonveg">Non-Vegetarian</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-300 mb-1.5">Protein Content (g)</label>
+                        <input type="number" id="newDishProtein" placeholder="35" class="w-full bg-obsidian-900 border border-emerald-500/20 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:ring-2 focus:ring-emerald-500">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-300 mb-1.5">Calories (kcal)</label>
+                        <input type="number" id="newDishCalories" placeholder="420" class="w-full bg-obsidian-900 border border-emerald-500/20 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:ring-2 focus:ring-emerald-500">
+                    </div>
+                    <div class="sm:col-span-2">
+                        <label class="block text-xs font-semibold text-slate-300 mb-1.5">Food Image URL (Optional)</label>
+                        <input type="text" id="newDishImage" placeholder="https://images.unsplash.com/... or leave blank" class="w-full bg-obsidian-900 border border-emerald-500/20 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:ring-2 focus:ring-emerald-500">
+                    </div>
+                    <div class="sm:col-span-2">
+                        <label class="block text-xs font-semibold text-slate-300 mb-1.5">Description</label>
+                        <textarea id="newDishDesc" rows="3" placeholder="Savor our freshly prepared healthy dish..." class="w-full bg-obsidian-900 border border-emerald-500/20 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:ring-2 focus:ring-emerald-500"></textarea>
+                    </div>
+                </div>
+                <button onclick="handleAddNewItem()" class="w-full bg-gradient-to-r from-emerald-500 to-emerald-600 hover:from-emerald-400 hover:to-emerald-500 text-obsidian-950 font-extrabold py-3.5 px-4 rounded-xl shadow-lg shadow-emerald-500/25 transition-all flex items-center justify-center gap-2 text-sm mt-4">
+                    <i class="fa-solid fa-plus"></i> Add Item to Menu
+                </button>
+            </div>
+
+            <!-- MANAGE / EDIT MENU SECTION -->
+            <div id="adminManageSection" class="space-y-4 hidden">
+                <div class="flex items-center justify-between gap-4">
+                    <h4 class="text-sm font-extrabold text-white uppercase tracking-wider">Manage & Edit Menu Items</h4>
+                    <div class="relative w-48 sm:w-64">
+                        <span class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400">
+                            <i class="fa-solid fa-magnifying-glass text-xs"></i>
+                        </span>
+                        <input type="text" id="adminSearchInput" placeholder="Search menu..." class="w-full pl-9 pr-3 py-1.5 bg-obsidian-950 border border-emerald-500/30 rounded-xl text-xs text-slate-100 focus:outline-none focus:ring-2 focus:ring-emerald-500">
+                    </div>
+                </div>
+                <div id="adminItemsListContainer" class="space-y-3 max-h-[55vh] overflow-y-auto pr-2">
+                    <!-- Populated dynamically -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MACRO CALCULATOR MODAL -->
+    <div id="macroModal" class="fixed inset-0 bg-obsidian-950/80 backdrop-blur-md z-50 hidden flex items-center justify-center p-4">
+        <div class="glass-card rounded-3xl max-w-2xl w-full p-6 sm:p-8 shadow-2xl border border-emerald-500/30 transform scale-95 opacity-0 transition-all duration-300 max-h-[90vh] overflow-y-auto" id="macroModalContent">
+            <div class="flex items-center justify-between mb-6 pb-4 border-b border-emerald-500/20">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-xl bg-emerald-500/10 text-emerald-400 flex items-center justify-center text-lg border border-emerald-500/20">
+                        <i class="fa-solid fa-bolt"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-extrabold text-white">Smart Macro Calculator & AI Diet Plan</h3>
+                        <p class="text-xs text-slate-400">Choose your lifestyle mode to calculate nutritional needs and view recommended meals.</p>
+                    </div>
+                </div>
+                <button onclick="toggleMacroModal()" class="w-9 h-9 rounded-xl bg-obsidian-800 hover:bg-obsidian-700 text-slate-400 hover:text-white flex items-center justify-center transition-all border border-emerald-500/20">
+                    <i class="fa-solid fa-xmark text-lg"></i>
+                </button>
+            </div>
+
+            <!-- Lifestyle Mode Toggle Tabs -->
+            <div class="grid grid-cols-2 gap-2 p-1.5 bg-obsidian-900 rounded-2xl mb-6 border border-emerald-500/20">
+                <button onclick="switchCalcMode('workout')" id="modeWorkoutBtn" class="py-2.5 px-4 rounded-xl text-xs sm:text-sm font-extrabold transition-all bg-emerald-500 text-obsidian-950 shadow-md flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-dumbbell"></i> Workout / Fitness
+                </button>
+                <button onclick="switchCalcMode('family')" id="modeFamilyBtn" class="py-2.5 px-4 rounded-xl text-xs sm:text-sm font-semibold transition-all text-slate-300 hover:text-white flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-house-chimney-user"></i> Family / General
+                </button>
+            </div>
+
+            <!-- WORKOUT MODE FORM -->
+            <div id="workoutModeSection" class="space-y-4 mb-6">
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-300 mb-1.5">Your Body Weight (kg)</label>
+                        <input type="number" id="calcWeightWorkout" value="70" class="w-full bg-obsidian-900 border border-emerald-500/20 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:ring-2 focus:ring-emerald-500">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-300 mb-1.5">Training Goal</label>
+                        <select id="calcGoalWorkout" class="w-full bg-obsidian-900 border border-emerald-500/20 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:ring-2 focus:ring-emerald-500">
+                            <option value="muscle">Muscle Gain (Hypertrophy - 2.0g/kg)</option>
+                            <option value="maintain" selected>Maintenance (Fitness - 1.6g/kg)</option>
+                            <option value="loss">Fat Loss (Lean Cut - 2.2g/kg)</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-300 mb-1.5">Workout Intensity</label>
+                        <select id="calcActivityWorkout" class="w-full bg-obsidian-900 border border-emerald-500/20 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:ring-2 focus:ring-emerald-500">
+                            <option value="moderate" selected>Moderate Training (3-5 days/week)</option>
+                            <option value="active">Heavy Training (Daily Heavy Lifts)</option>
+                            <option value="light">Light Training (1-2 days/week)</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-300 mb-1.5">Budget Limit (₹)</label>
+                        <input type="number" id="calcBudgetWorkout" value="600" class="w-full bg-obsidian-900 border border-emerald-500/20 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:ring-2 focus:ring-emerald-500">
+                    </div>
+                </div>
+            </div>
+
+            <!-- FAMILY / GENERAL MODE FORM -->
+            <div id="familyModeSection" class="space-y-4 mb-6 hidden">
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-300 mb-1.5">Number of People Dining</label>
+                        <select id="calcFamilySize" class="w-full bg-obsidian-900 border border-emerald-500/20 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:ring-2 focus:ring-emerald-500">
+                            <option value="2" selected>2 People (Couple / Friends)</option>
+                            <option value="3">3 People (Small Family)</option>
+                            <option value="4">4 People (Family Sharing)</option>
+                            <option value="5">5+ People (Group Feast)</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-300 mb-1.5">Dietary Preference</label>
+                        <select id="calcFamilyDiet" class="w-full bg-obsidian-900 border border-emerald-500/20 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:ring-2 focus:ring-emerald-500">
+                            <option value="mix" selected>Mixed (Healthy Veg & Non-Veg)</option>
+                            <option value="veg">Pure Healthy Vegetarian</option>
+                        </select>
+                    </div>
+                    <div class="sm:col-span-2">
+                        <label class="block text-xs font-semibold text-slate-300 mb-1.5">General Meal Goal</label>
+                        <select id="calcFamilyGoal" class="w-full bg-obsidian-900 border border-emerald-500/20 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:ring-2 focus:ring-emerald-500">
+                            <option value="balanced" selected>Balanced Wholesome & Nutritious Dinner / Lunch</option>
+                            <option value="light">Light Healthy Soups, Salads & Wraps</option>
+                            <option value="heavy">Hearty Feasts (Tandoori Platters & Rice Bowls)</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <button onclick="calculateAndRecommend()" class="w-full bg-gradient-to-r from-emerald-500 to-emerald-600 hover:from-emerald-400 hover:to-emerald-500 text-obsidian-950 font-extrabold py-3.5 px-4 rounded-xl shadow-lg shadow-emerald-500/25 transition-all flex items-center justify-center gap-2 mb-6 text-sm">
+                <i class="fa-solid fa-calculator"></i> Calculate Macros & Get Recommendations
+            </button>
+
+            <!-- SEPARATE SECTION 1: MACRO CALCULATOR RESULTS -->
+            <div id="macroResultsCard" class="hidden space-y-4 mb-6">
+                <div class="flex items-center gap-2">
+                    <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse"></span>
+                    <h4 class="text-sm font-extrabold text-white uppercase tracking-wider">1. Your Required Nutrition Target</h4>
+                </div>
+                <div class="grid grid-cols-3 gap-3 text-center">
+                    <div class="bg-obsidian-900 p-3 rounded-2xl border border-emerald-500/20">
+                        <span class="block text-[10px] text-slate-400 uppercase font-semibold mb-1" id="metric1Label">Target Protein</span>
+                        <span id="targetProteinText" class="text-lg font-black text-emerald-400">120g</span>
+                    </div>
+                    <div class="bg-obsidian-900 p-3 rounded-2xl border border-emerald-500/20">
+                        <span class="block text-[10px] text-slate-400 uppercase font-semibold mb-1" id="metric2Label">Target Calories</span>
+                        <span id="targetCaloriesText" class="text-lg font-black text-white">2200 kcal</span>
+                    </div>
+                    <div class="bg-obsidian-900 p-3 rounded-2xl border border-emerald-500/20">
+                        <span class="block text-[10px] text-slate-400 uppercase font-semibold mb-1">Max Budget</span>
+                        <span id="targetCostText" class="text-lg font-black text-amber-400">₹600</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SEPARATE SECTION 2: DISH RECOMMENDATIONS -->
+            <div id="recommendationsSection" class="hidden space-y-4 pt-4 border-t border-emerald-500/20">
+                <div class="flex items-center justify-between">
+                    <div class="flex items-center gap-2">
+                        <span class="w-2.5 h-2.5 rounded-full bg-emerald-500"></span>
+                        <h4 class="text-sm font-extrabold text-white uppercase tracking-wider" id="recommendationsHeaderTitle">2. Recommended Meal Combinations</h4>
+                    </div>
+                    <span class="text-xs font-bold text-emerald-400 bg-emerald-500/10 px-2.5 py-1 rounded-lg border border-emerald-500/20" id="comboCostBadge">Total: ₹548</span>
+                </div>
+                
+                <div id="recommendedItemsList" class="space-y-2.5">
+                    <!-- Populated by JS -->
+                </div>
+
+                <button onclick="addAllRecommendedToCart()" class="w-full bg-obsidian-900 hover:bg-obsidian-800 text-emerald-400 border border-emerald-500/30 font-extrabold py-3 rounded-xl text-xs sm:text-sm transition-all flex items-center justify-center gap-2 shadow-md">
+                    <i class="fa-solid fa-cart-plus"></i> Add All Recommended Items to Cart Instantly
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- CART DRAWER -->
+    <div id="cartBackdrop" onclick="toggleCart()" class="fixed inset-0 bg-obsidian-950/80 backdrop-blur-sm z-50 hidden transition-opacity opacity-0"></div>
+
+    <div id="cartDrawer" class="fixed inset-y-0 right-0 max-w-md w-full bg-obsidian-900 shadow-2xl z-50 transform translate-x-full transition-transform duration-300 ease-in-out flex flex-col border-l border-emerald-500/20">
+        <!-- Cart Header -->
+        <div class="p-5 border-b border-emerald-500/20 flex items-center justify-between bg-obsidian-950">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-xl bg-emerald-500/10 text-emerald-400 flex items-center justify-center font-bold border border-emerald-500/20">
+                    <i class="fa-solid fa-basket-shopping"></i>
+                </div>
+                <div>
+                    <h3 class="font-extrabold text-white text-base">Your High-Protein Bag</h3>
+                    <p class="text-xs text-slate-400">Protein Station • Basavanagudi</p>
+                </div>
+            </div>
+            <button onclick="toggleCart()" class="w-9 h-9 rounded-xl bg-obsidian-800 hover:bg-obsidian-700 text-slate-400 hover:text-white flex items-center justify-center transition-all border border-emerald-500/20">
+                <i class="fa-solid fa-xmark text-lg"></i>
+            </button>
+        </div>
+
+        <!-- Table Number & Location Selection (Before Order Placement) -->
+        <div class="px-5 pt-4 pb-3 bg-obsidian-900 border-b border-emerald-500/10">
+            <label class="block text-xs font-bold text-slate-300 mb-1.5 flex items-center gap-1.5">
+                <i class="fa-solid fa-chair text-emerald-400"></i> Change Table & Location (Before Order)
+            </label>
+            <div class="flex items-center gap-2">
+                <select id="tableNumberSelect" class="w-full bg-obsidian-950 border border-emerald-500/30 rounded-xl px-4 py-2.5 text-sm font-bold text-emerald-400 focus:outline-none focus:ring-2 focus:ring-emerald-500">
+                    <option value="Table 1">Table 1 (Window View)</option>
+                    <option value="Table 2">Table 2 (Booth)</option>
+                    <option value="Table 3" selected>Table 3 (Center)</option>
+                    <option value="Table 4">Table 4 (Family Section)</option>
+                    <option value="Table 5">Table 5 (High Stool)</option>
+                    <option value="Takeaway">📦 Takeaway / Parcel</option>
+                </select>
+                <button onclick="showToast('Table / Location updated for current bag!')" class="bg-obsidian-800 hover:bg-obsidian-700 text-emerald-400 px-3.5 py-2.5 rounded-xl text-xs font-bold border border-emerald-500/30 shrink-0">
+                    <i class="fa-solid fa-check"></i> Set
+                </button>
+            </div>
+        </div>
+
+        <!-- Cart Items List -->
+        <div id="cartItemsList" class="flex-grow overflow-y-auto p-5 space-y-4 divide-y divide-emerald-500/10">
+            <!-- Dynamic Cart Items -->
+        </div>
+
+        <!-- Cart Footer / Bill Summary & Total Protein -->
+        <div id="cartFooter" class="border-t border-emerald-500/20 p-5 bg-obsidian-950 shadow-2xl">
+            <div class="bg-emerald-500/10 border border-emerald-500/20 rounded-2xl p-3 mb-4 flex items-center justify-between text-xs">
+                <span class="font-semibold text-slate-300"><i class="fa-solid fa-dumbbell text-emerald-400 mr-1.5"></i> Total Protein in Bag:</span>
+                <span id="cartTotalProtein" class="font-black text-emerald-400 text-sm">0g Protein</span>
+            </div>
+            <div class="space-y-2 mb-4 text-sm">
+                <div class="flex justify-between text-base font-extrabold text-white pt-2 border-t border-emerald-500/20">
+                    <span>Total Amount</span>
+                    <span id="cartTotal" class="text-emerald-400">₹0</span>
+                </div>
+            </div>
+            <button onclick="checkoutOrder()" class="w-full bg-gradient-to-r from-emerald-500 to-emerald-600 hover:from-emerald-400 hover:to-emerald-500 text-obsidian-950 py-3.5 px-4 rounded-xl font-extrabold shadow-lg shadow-emerald-500/25 transition-all flex items-center justify-center gap-2 text-base active:scale-[0.98]">
+                <span>Place Order Now</span>
+                <i class="fa-solid fa-arrow-right"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- SUCCESS MODAL -->
+    <div id="successModal" class="fixed inset-0 bg-obsidian-950/85 backdrop-blur-md z-50 hidden flex items-center justify-center p-4">
+        <div class="glass-card rounded-3xl max-w-md w-full p-8 text-center shadow-2xl border border-emerald-500/30 transform scale-95 opacity-0 transition-all duration-300" id="successModalContent">
+            <div class="w-20 h-20 rounded-full bg-emerald-500/10 text-emerald-400 flex items-center justify-center mx-auto mb-5 text-3xl border border-emerald-500/30 shadow-inner">
+                <i class="fa-solid fa-check"></i>
+            </div>
+            <h3 class="text-2xl font-extrabold text-white mb-2">Order Sent to Kitchen!</h3>
+            <p class="text-slate-300 text-sm mb-6">Your clean macro meal has been received by the kitchen for <span id="confirmedTableText" class="text-emerald-400 font-bold">Table 3</span> at Protein Station, Basavanagudi.</p>
+            <div class="bg-obsidian-900 rounded-2xl p-4 text-left mb-6 space-y-2 text-xs border border-emerald-500/20">
+                <div class="flex justify-between text-slate-400 font-medium">
+                    <span>Order ID:</span>
+                    <span class="font-mono text-emerald-400 font-bold" id="orderIdText">#PS-9281</span>
+                </div>
+                <div class="flex justify-between text-slate-400 font-medium">
+                    <span>Status:</span>
+                    <span class="text-emerald-400 font-bold">Preparing Freshly</span>
+                </div>
+            </div>
+            <button onclick="closeSuccessModal()" class="w-full bg-emerald-500 hover:bg-emerald-400 text-obsidian-950 py-3 rounded-xl font-extrabold text-sm transition-all shadow-lg shadow-emerald-500/20">
+                Back to Menu
+            </button>
+        </div>
+    </div>
+
+    <!-- TOAST NOTIFICATION -->
+    <div id="toast" class="fixed bottom-6 left-1/2 transform -translate-x-1/2 bg-obsidian-900 border border-emerald-500/30 text-white px-5 py-3 rounded-2xl shadow-2xl z-50 flex items-center gap-3 text-sm font-semibold opacity-0 pointer-events-none transition-all duration-300 translate-y-4">
+        <i class="fa-solid fa-circle-check text-emerald-400 text-lg"></i>
+        <span id="toastMessage">Item added to bag</span>
+    </div>
+
+    <footer class="bg-obsidian-900 border-t border-emerald-500/10 py-10 mt-16 text-center text-xs text-slate-400">
+        <div class="max-w-7xl mx-auto px-4 space-y-3">
+            <div class="flex items-center justify-center gap-2 text-white font-bold text-sm">
+                <div class="w-6 h-6 rounded-lg bg-emerald-500 text-obsidian-950 flex items-center justify-center text-xs">
+                    <i class="fa-solid fa-bolt"></i>
+                </div>
+                Protein Station • Basavanagudi, Bengaluru
+            </div>
+            <p class="max-w-xl mx-auto">100% Organic, Antibiotic-Free Chicken & Fresh Garden Veggies. Zero Artificial Sweeteners in Protein Brews. Engineered for Fitness Enthusiasts.</p>
+            <p class="text-slate-600 pt-4 border-t border-emerald-500/10">&copy; 2026 Protein Station High-Performance Web App. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Full Menu Data with accurate estimated Protein (g) & Calories added and professional food photography image URLs
+        let menuCategories = [
+            {
+                id: "recommended",
+                name: "Recommended",
+                items: [
+                    { id: "rec-1", name: "Chicken Steak", price: 419, type: "nonveg", rating: "4.6", reviews: 7, protein: 42, calories: 520, image: "https://images.unsplash.com/photo-1600891964599-f61ba0e24092?auto=format&fit=crop&w=800&q=80", desc: "Savor our innovative chicken steak, a culinary masterpiece where creamy chicken breast takes center stage, grilled to perfection and served with a side of brown fried rice, exotic tossed veggies and in-house mushroom sauce!" },
+                    { id: "rec-2", name: "Grilled Chicken with Creamy Mushroom Sauce", price: 379, type: "nonveg", rating: "4.8", reviews: 12, protein: 45, calories: 460, image: "https://images.unsplash.com/photo-1532550907401-a500c9a57435?auto=format&fit=crop&w=800&q=80", desc: "Indulge in tender grilled chicken topped with a velvety mushroom sauce, a delectable treat from our Inhouse Specials collection." },
+                    { id: "rec-3", name: "Paneer Wrap", price: 299, type: "veg", rating: "4.5", reviews: 19, protein: 22, calories: 380, image: "https://images.unsplash.com/photo-1528735602780-2552fd46c7af?auto=format&fit=crop&w=800&q=80", desc: "Delicious wholesome wrap packed with succulent grilled paneer, fresh veggies, and secret in-house dressing." },
+                    { id: "rec-4", name: "Chicken Wrap", price: 309, type: "nonveg", rating: "4.7", reviews: 15, protein: 32, calories: 410, image: "https://images.unsplash.com/photo-1626777552726-4a6b54c97e46?auto=format&fit=crop&w=800&q=80", desc: "High protein chicken wrap loaded with tender organic chicken chunks and crisp salad greens." },
+                    { id: "rec-5", name: "Grilled Chicken Breast", price: 309, type: "nonveg", rating: "5.0", reviews: 8, protein: 48, calories: 340, image: "https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?auto=format&fit=crop&w=800&q=80", desc: "Juicy and succulent grilled chicken breast, perfectly charred to achieve a mouthwatering flavor." },
+                    { id: "rec-6", name: "Broccoli Soup", price: 189, type: "veg", rating: "4.8", reviews: 4, protein: 7, calories: 140, image: "https://images.unsplash.com/photo-1547592166-23ac45744acd?auto=format&fit=crop&w=800&q=80", desc: "Hearty soup made with broccoli florets and fresh herbs. A flavorful and nourishing broth perfect for anytime." }
+                ]
+            },
+            {
+                id: "inhouse",
+                name: "Inhouse Specials",
+                items: [
+                    { id: "inh-1", name: "Grilled Paneer with Creamy Mushroom Sauce", price: 369, type: "veg", rating: "4.4", reviews: 11, protein: 25, calories: 450, image: "https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?auto=format&fit=crop&w=800&q=80", desc: "Delectable combination of grilled paneer and melt in your mouth creamy mushroom sauce." },
+                    { id: "inh-2", name: "Boiled Chilli Chicken Breast", price: 349, type: "nonveg", rating: "3.8", reviews: 14, protein: 50, calories: 380, image: "https://images.unsplash.com/photo-1525755662778-989d0524087e?auto=format&fit=crop&w=800&q=80", desc: "200g of Organic Boiled Chicken tossed with chef's special chilli schezwan sauce." },
+                    { id: "inh-3", name: "Tofu Steak", price: 399, type: "veg", rating: "4.2", reviews: 9, protein: 28, calories: 410, image: "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=800&q=80", desc: "Mushroom symphony sauce, aromatic herb rice, vibrant tossed vegetables, and grilled tofu." },
+                    { id: "inh-4", name: "Cottage Cheese Steak", price: 399, type: "veg", rating: "3.6", reviews: 7, protein: 26, calories: 440, image: "https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&w=800&q=80", desc: "Creamy tofu takes center stage, grilled to perfection and served with vibrant garden-fresh flavors." },
+                    { id: "inh-5", name: "Lemon Chicken Breast", price: 349, type: "nonveg", rating: "4.6", reviews: 6, protein: 46, calories: 350, image: "https://images.unsplash.com/photo-1604908176997-125f2596f3a8?auto=format&fit=crop&w=800&q=80", desc: "Tender chicken breast infused with zesty lemon flavors, a delectable choice from our Inhouse Specials." },
+                    { id: "inh-6", name: "Chilli Paneer", price: 339, type: "veg", rating: "4.1", reviews: 10, protein: 20, calories: 420, image: "https://images.unsplash.com/photo-1565557623262-b51c2513a641?auto=format&fit=crop&w=800&q=80", desc: "Tossed paneer cubes in spicy oriental chilli sauce with bell peppers and onions." },
+                    { id: "inh-7", name: "Protein French Toast", price: 289, type: "nonveg", rating: "4.7", reviews: 8, protein: 24, calories: 360, image: "https://images.unsplash.com/photo-1484723091739-30a097e8f929?auto=format&fit=crop&w=800&q=80", desc: "Delectable twist on a classic favorite, boosted with a protein-packed punch for fluffy fitness." }
+                ]
+            },
+            {
+                id: "tandoori",
+                name: "Tandoori Fusion Feasts",
+                items: [
+                    { id: "tan-1", name: "Hariyali Chicken Tikka", price: 439, type: "nonveg", rating: "4.7", reviews: 16, protein: 48, calories: 430, image: "https://images.unsplash.com/photo-1599487484170-7c1e66508dbc?auto=format&fit=crop&w=800&q=80", desc: "Juicy chicken marinated in spicy herb blend and char-grilled. Antibiotic-free organic chicken." },
+                    { id: "tan-2", name: "Achari Chicken Tikka", price: 429, type: "nonveg", rating: "4.5", reviews: 12, protein: 46, calories: 440, image: "https://images.unsplash.com/photo-1610057099431-d7a8e9d3b4fb?auto=format&fit=crop&w=800&q=80", desc: "Tangy, spicy pickle-marinated chicken cooked to perfection in a clay oven." },
+                    { id: "tan-3", name: "Malai Chicken Tikka", price: 429, type: "nonveg", rating: "3.3", reviews: 6, protein: 44, calories: 480, image: "https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&w=800&q=80", desc: "Tender pieces of chicken marinated in a creamy cashew malai sauce and baked." },
+                    { id: "tan-4", name: "Afgani Chicken Tikka", price: 429, type: "nonveg", rating: "3.6", reviews: 6, protein: 46, calories: 460, image: "https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?auto=format&fit=crop&w=800&q=80", desc: "Authentic afghani spices char-grilled to perfection. A must-try for chicken lovers!" },
+                    { id: "tan-5", name: "Pahadi Chicken Tikka", price: 429, type: "nonveg", rating: "4.4", reviews: 9, protein: 47, calories: 420, image: "https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=800&q=80", desc: "Traditional northern Indian recipe with aromatic spices cooked over charcoal." },
+                    { id: "tan-6", name: "Chicken Tikka", price: 429, type: "nonveg", rating: "4.8", reviews: 22, protein: 48, calories: 410, image: "https://images.unsplash.com/photo-1599487484170-7c1e66508dbc?auto=format&fit=crop&w=800&q=80", desc: "Classic yoghurt and spice marinated chicken cooked in clay oven." }
+                ]
+            },
+            {
+                id: "wraps",
+                name: "Mealboxes, Wraps & Greens",
+                items: [
+                    { id: "wrp-1", name: "Veggie Wrap", price: 249, type: "veg", rating: "4.7", reviews: 5, protein: 10, calories: 310, image: "https://images.unsplash.com/photo-1528735602780-2552fd46c7af?auto=format&fit=crop&w=800&q=80", desc: "Zucchini, broccoli, sweet corn, onion, and carrot in a colorful nutritious wrap." },
+                    { id: "wrp-2", name: "Eggciting Wrap", price: 249, type: "nonveg", rating: "5.0", reviews: 3, protein: 20, calories: 350, image: "https://images.unsplash.com/photo-1626777552726-4a6b54c97e46?auto=format&fit=crop&w=800&q=80", desc: "Sauteed tomato, bell pepper, and onion folded around succulent chopped eggs." },
+                    { id: "wrp-3", name: "Grilled Paneer", price: 198, type: "veg", rating: "4.5", reviews: 16, protein: 18, calories: 290, image: "https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?auto=format&fit=crop&w=800&q=80", desc: "Succulent grilled paneer, lightly spiced offering a delightful burst of flavor." },
+                    { id: "wrp-4", name: "Sizzling Greens", price: 139, type: "veg", rating: "3.2", reviews: 20, protein: 6, calories: 180, image: "https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&w=800&q=80", desc: "Medley of zucchini, carrot, broccoli, beans, and baby corn tossed in olive oil." }
+                ]
+            },
+            {
+                id: "sandwiches",
+                name: "Gourmet Multigrain Sandwiches",
+                items: [
+                    { id: "snd-1", name: "Paneer Sandwich", price: 329, type: "veg", rating: "4.7", reviews: 13, protein: 22, calories: 410, image: "https://images.unsplash.com/photo-1528735602780-2552fd46c7af?auto=format&fit=crop&w=800&q=80", desc: "Grilled paneer and onion symphony seasoned with in-house chutney on multigrain bread." },
+                    { id: "snd-2", name: "Tofu Sandwich", price: 309, type: "veg", rating: "4.3", reviews: 8, protein: 19, calories: 370, image: "https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&w=800&q=80", desc: "Wholesome plant-based tofu sandwich with fresh herbs and crisp greens." },
+                    { id: "snd-3", name: "Omelette Sandwich", price: 249, type: "nonveg", rating: "4.6", reviews: 11, protein: 18, calories: 360, image: "https://images.unsplash.com/photo-1525351484163-7529414344d8?auto=format&fit=crop&w=800&q=80", desc: "Fluffy omelette, crisp onions, ripe tomatoes, and secret in-house chutney." },
+                    { id: "snd-4", name: "Chopped Egg Sandwich", price: 249, type: "nonveg", rating: "4.9", reviews: 3, protein: 19, calories: 340, image: "https://images.unsplash.com/photo-1525351484163-7529414344d8?auto=format&fit=crop&w=800&q=80", desc: "Tender boiled egg slices, fresh onions, tomatoes, and signature in-house chutney." },
+                    { id: "snd-5", name: "Mixed veg sandwich", price: 239, type: "veg", rating: "4.5", reviews: 5, protein: 10, calories: 300, image: "https://images.unsplash.com/photo-1550547660-d9450f859349?auto=format&fit=crop&w=800&q=80", desc: "Broccoli, zucchini, carrots, baby corn, beans, and onions—a garden on your plate." },
+                    { id: "snd-6", name: "Peanut butter sandwich with banana", price: 219, type: "veg", rating: "4.1", reviews: 3, protein: 12, calories: 420, image: "https://images.unsplash.com/photo-1525351484163-7529414344d8?auto=format&fit=crop&w=800&q=80", desc: "Creamy peanut butter, ripe bananas, and golden honey on wholesome multigrain bread." }
+                ]
+            },
+            {
+                id: "rice",
+                name: "Nutri Rice Delights",
+                items: [
+                    { id: "ric-1", name: "Paneer Fried Brown Rice", price: 349, type: "veg", rating: "3.8", reviews: 23, protein: 18, calories: 480, image: "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=800&q=80", desc: "Brown paneer rice enriched with fresh broccoli, zucchini, carrot, beans, and sweetcorn." },
+                    { id: "ric-2", name: "Chicken Fried Brown Rice", price: 349, type: "nonveg", rating: "4.8", reviews: 4, protein: 35, calories: 510, image: "https://images.unsplash.com/photo-1603133872878-684f208fb84b?auto=format&fit=crop&w=800&q=80", desc: "Tender and juicy chicken breast pieces and fried brown rice. Perfect macro balance." },
+                    { id: "ric-3", name: "Egg Fried Rice", price: 329, type: "nonveg", rating: "2.1", reviews: 3, protein: 22, calories: 460, image: "https://images.unsplash.com/photo-1512058564366-18510be2db19?auto=format&fit=crop&w=800&q=80", desc: "Fluffy brown rice grains blended with eggs and fresh tender vegetables." },
+                    { id: "ric-4", name: "Veggie Fried Brown Rice", price: 319, type: "veg", rating: "4.4", reviews: 10, protein: 9, calories: 390, image: "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=800&q=80", desc: "Brown rice bowl brimming with nutritious broccoli, zucchini, carrot, beans, and sweetcorn." },
+                    { id: "ric-5", name: "Schezwan Fried Brown Rice", price: 319, type: "veg", rating: "4.3", reviews: 7, protein: 9, calories: 400, image: "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=800&q=80", desc: "Spicy Schezwan brown rice bowl brimming with nutritious veggies and chef's spice mix." }
+                ]
+            },
+            {
+                id: "chicken",
+                name: "Chicken Delights",
+                items: [
+                    { id: "chk-1", name: "Grilled Chicken Salad", price: 449, type: "nonveg", rating: "3.4", reviews: 5, protein: 52, calories: 410, image: "https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&w=800&q=80", desc: "200g Grilled Chicken, tossed exotic veggies with light vinaigrette." },
+                    { id: "chk-2", name: "Tossed Breast Chicken", price: 309, type: "nonveg", rating: "4.7", reviews: 13, protein: 50, calories: 330, image: "https://images.unsplash.com/photo-1604908176997-125f2596f3a8?auto=format&fit=crop&w=800&q=80", desc: "200g of boneless breast chicken tossed with olive oil and in-house spices." },
+                    { id: "chk-3", name: "Boiled Chicken Breast", price: 299, type: "nonveg", rating: "4.4", reviews: 21, protein: 48, calories: 290, image: "https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?auto=format&fit=crop&w=800&q=80", desc: "Clean 180g-200g boiled chicken breast, ideal for strict fitness diets." },
+                    { id: "chk-4", name: "Chicken Noodles", price: 359, type: "nonveg", rating: "4.5", reviews: 9, protein: 34, calories: 490, image: "https://images.unsplash.com/photo-1585032226651-759b368d7246?auto=format&fit=crop&w=800&q=80", desc: "Wholesome wheat noodles loaded with chicken breast and crisp oriental vegetables." }
+                ]
+            },
+            {
+                id: "brews",
+                name: "Protein Brews (Zero Sugar)",
+                items: [
+                    { id: "brw-1", name: "Apple Protein Shake", price: 289, type: "veg", rating: "4.7", reviews: 9, protein: 26, calories: 280, image: "https://images.unsplash.com/photo-1553530666-ba11a7da3888?auto=format&fit=crop&w=800&q=80", desc: "Refreshing apple and whey protein mixed with slim milk. Zero added sugar." },
+                    { id: "brw-2", name: "Banana Protein Shake", price: 269, type: "veg", rating: "1.7", reviews: 3, protein: 25, calories: 290, image: "https://images.unsplash.com/photo-1577805947697-89e18249d767?auto=format&fit=crop&w=800&q=80", desc: "Ripe bananas, vanilla-flavored protein, and nutritious slim milk for muscle recovery." },
+                    { id: "brw-3", name: "Mix Dry Fruits Protein Shake", price: 299, type: "veg", rating: "4.9", reviews: 7, protein: 28, calories: 340, image: "https://images.unsplash.com/photo-1541658016709-82535e94bc69?auto=format&fit=crop&w=800&q=80", desc: "Creamy nutty protein brew with cashew, badam, pista, and kesar-badam whey." },
+                    { id: "brw-4", name: "Protein Peanut Banana Shake", price: 189, type: "veg", rating: "4.8", reviews: 14, protein: 24, calories: 350, image: "https://images.unsplash.com/photo-1553530666-ba11a7da3888?auto=format&fit=crop&w=800&q=80", desc: "Smooth peanut butter, ripe bananas, and wholesome skim milk. Pure energy." },
+                    { id: "brw-5", name: "Monster Gainer Protein Shake", price: 259, type: "veg", rating: "4.4", reviews: 11, protein: 32, calories: 480, image: "https://images.unsplash.com/photo-1541658016709-82535e94bc69?auto=format&fit=crop&w=800&q=80", desc: "Mass gainer blend with peanut butter, ripe bananas, and silky skim milk for mass building." }
+                ]
+            }
+        ];
+
+        // State management
+        let cart = {}; // itemId -> {item, quantity}
+        let liveOrders = []; // List of placed orders received by admin
+        let currentDietFilter = 'all';
+        let searchQuery = '';
+        let activeCalcMode = 'workout'; // 'workout' or 'family'
+        let lastRecommendedItems = [];
+        let isAdminAuthenticated = false;
+
+        // Initialize application on load
+        window.onload = function() {
+            renderCategoryTabs();
+            populateAdminCategorySelect();
+            renderMenu();
+            updateCartUI();
+
+            // Search listeners
+            const searchInput = document.getElementById('searchInput');
+            if (searchInput) {
+                searchInput.addEventListener('input', (e) => {
+                    searchQuery = e.target.value.toLowerCase();
+                    renderMenu();
+                });
+            }
+
+            const mobileSearchInput = document.getElementById('mobileSearchInput');
+            if (mobileSearchInput) {
+                mobileSearchInput.addEventListener('input', (e) => {
+                    searchQuery = e.target.value.toLowerCase();
+                    renderMenu();
+                });
+            }
+
+            const adminSearchInput = document.getElementById('adminSearchInput');
+            if (adminSearchInput) {
+                adminSearchInput.addEventListener('input', (e) => {
+                    renderAdminItemsList(e.target.value.toLowerCase());
+                });
+            }
+        };
+
+        // Render Category Tabs
+        function renderCategoryTabs() {
+            const container = document.getElementById('categoryTabs');
+            container.innerHTML = menuCategories.map(cat => `
+                <a href="#cat-${cat.id}" class="whitespace-nowrap px-4 py-2 rounded-xl text-xs font-bold bg-obsidian-900 border border-emerald-500/20 text-slate-300 hover:border-emerald-500 hover:text-emerald-400 transition-all shadow-sm">
+                    ${cat.name}
+                </a>
+            `).join('');
+        }
+
+        function populateAdminCategorySelect() {
+            const select = document.getElementById('newDishCategory');
+            select.innerHTML = menuCategories.map(cat => `
+                <option value="${cat.id}">${cat.name}</option>
+            `).join('');
+        }
+
+        // Render Menu Items
+        function renderMenu() {
+            const container = document.getElementById('menuContainer');
+            let html = '';
+
+            menuCategories.forEach(cat => {
+                const filteredItems = cat.items.filter(item => {
+                    const matchesSearch = item.name.toLowerCase().includes(searchQuery) || item.desc.toLowerCase().includes(searchQuery);
+                    const matchesDiet = currentDietFilter === 'all' || item.type === currentDietFilter;
+                    return matchesSearch && matchesDiet;
+                });
+
+                if (filteredItems.length === 0) return;
+
+                html += `
+                    <div id="cat-${cat.id}" class="scroll-mt-32">
+                        <div class="flex items-center justify-between mb-4 pb-2 border-b border-emerald-500/20">
+                            <h2 class="text-xl font-extrabold text-white tracking-tight">${cat.name} <span class="text-xs font-normal text-slate-400">(${filteredItems.length})</span></h2>
+                        </div>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                `;
+
+                filteredItems.forEach(item => {
+                    const qty = cart[item.id] ? cart[item.id].quantity : 0;
+                    const isVeg = item.type === 'veg';
+
+                    html += `
+                        <div class="glass-card rounded-3xl overflow-hidden border border-emerald-500/10 hover:border-emerald-500/30 transition-all flex flex-col justify-between group shadow-xl">
+                            ${item.image && item.image.trim() !== '' ? `
+                                <div class="w-full h-60 overflow-hidden bg-obsidian-950 relative">
+                                    <img src="${item.image}" alt="${item.name}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='https://placehold.co/800x600/0f1713/34d399?text=Protein+Station';">
+                                    <div class="absolute inset-0 bg-gradient-to-t from-obsidian-950 via-transparent to-transparent opacity-80"></div>
+                                </div>
+                            ` : ''}
+                            <div class="p-6 flex flex-col justify-between flex-grow gap-4">
+                                <div>
+                                    <div class="flex items-start justify-between gap-3 mb-2">
+                                        <div class="flex items-center gap-2">
+                                            <span class="w-4 h-4 rounded border ${isVeg ? 'border-emerald-500 flex items-center justify-center p-0.5' : 'border-rose-500 flex items-center justify-center p-0.5'}">
+                                                <span class="w-2 h-2 rounded-full ${isVeg ? 'bg-emerald-500' : 'bg-rose-500'}"></span>
+                                            </span>
+                                            <h3 class="font-extrabold text-white text-lg leading-tight">${item.name}</h3>
+                                        </div>
+                                        <span class="font-black text-emerald-400 text-lg shrink-0">₹${item.price}</span>
+                                    </div>
+
+                                    <!-- Protein & Rating Badges -->
+                                    <div class="flex items-center gap-2 mb-3 flex-wrap">
+                                        <span class="inline-flex items-center gap-1 bg-emerald-500/10 text-emerald-400 text-xs font-extrabold px-3 py-1 rounded-xl border border-emerald-500/20">
+                                            <i class="fa-solid fa-dumbbell text-[10px]"></i> ${item.protein}g Protein
+                                        </span>
+                                        <span class="inline-flex items-center gap-1 bg-obsidian-800 text-slate-300 text-xs font-semibold px-2.5 py-1 rounded-xl border border-emerald-500/10">
+                                            <i class="fa-solid fa-fire text-[10px] text-amber-400"></i> ${item.calories} kcal
+                                        </span>
+                                        <span class="inline-flex items-center gap-1 bg-obsidian-800 text-amber-400 text-xs font-bold px-2.5 py-1 rounded-xl border border-emerald-500/10">
+                                            <i class="fa-solid fa-star text-[10px]"></i> ${item.rating} (${item.reviews})
+                                        </span>
+                                    </div>
+
+                                    <p class="text-slate-300 text-sm leading-relaxed">${item.desc}</p>
+                                </div>
+
+                                <div class="pt-4 border-t border-emerald-500/10 flex items-center justify-between">
+                                    <span class="text-xs text-slate-400 font-medium">Freshly Prepared</span>
+                                    ${qty === 0 ? `
+                                        <button onclick="window.addToCart('${item.id}')" class="bg-emerald-500/10 hover:bg-emerald-500 text-emerald-400 hover:text-obsidian-950 border border-emerald-500/30 px-5 py-2.5 rounded-xl font-extrabold text-xs transition-all flex items-center gap-2 active:scale-95 shadow-lg shadow-emerald-500/5">
+                                            <i class="fa-solid fa-plus text-xs"></i> Add to Bag
+                                        </button>
+                                    ` : `
+                                        <div class="flex items-center bg-obsidian-900 border border-emerald-500/40 rounded-xl overflow-hidden font-bold">
+                                            <button onclick="window.updateQuantity('${item.id}', -1)" class="px-3 py-2 text-slate-300 hover:bg-obsidian-800 transition-colors text-xs">
+                                                <i class="fa-solid fa-minus"></i>
+                                            </button>
+                                            <span class="px-4 py-2 text-xs font-black text-white">${qty}</span>
+                                            <button onclick="window.updateQuantity('${item.id}', 1)" class="px-3 py-2 text-slate-300 hover:bg-obsidian-800 transition-colors text-xs">
+                                                <i class="fa-solid fa-plus"></i>
+                                            </button>
+                                        </div>
+                                    `}
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                });
+
+                html += `
+                        </div>
+                    </div>
+                `;
+            });
+
+            container.innerHTML = html;
+        }
+
+        // Admin Security & Management Functions
+        window.toggleAdminModal = function() {
+            const modal = document.getElementById('adminModal');
+            const loginView = document.getElementById('adminLoginView');
+            const dashView = document.getElementById('adminDashboardView');
+
+            if (modal.classList.contains('hidden')) {
+                modal.classList.remove('hidden');
+                // Reset login inputs & error
+                document.getElementById('adminLoginEmail').value = '';
+                document.getElementById('adminLoginPassword').value = '';
+                document.getElementById('adminLoginErrorMsg').classList.add('hidden');
+
+                if (isAdminAuthenticated) {
+                    loginView.classList.add('hidden');
+                    dashView.classList.remove('hidden');
+                    setTimeout(() => {
+                        dashView.classList.remove('scale-95', 'opacity-0');
+                        dashView.classList.add('scale-100', 'opacity-100');
+                    }, 10);
+                    renderAdminOrdersList();
+                } else {
+                    dashView.classList.add('hidden');
+                    loginView.classList.remove('hidden');
+                    setTimeout(() => {
+                        loginView.classList.remove('scale-95', 'opacity-0');
+                        loginView.classList.add('scale-100', 'opacity-100');
+                    }, 10);
+                }
+            } else {
+                const activeView = isAdminAuthenticated ? dashView : loginView;
+                activeView.classList.remove('scale-100', 'opacity-100');
+                activeView.classList.add('scale-95', 'opacity-0');
+                setTimeout(() => modal.classList.add('hidden'), 300);
+            }
+        };
+
+        window.handleAdminLogin = function() {
+            const emailInput = document.getElementById('adminLoginEmail').value.trim();
+            const passwordInput = document.getElementById('adminLoginPassword').value.trim();
+            const errorMsg = document.getElementById('adminLoginErrorMsg');
+
+            if (emailInput === 'omkarkamath81@gmail.com' && passwordInput === '24-05-2010') {
+                isAdminAuthenticated = true;
+                errorMsg.classList.add('hidden');
+
+                const loginView = document.getElementById('adminLoginView');
+                const dashView = document.getElementById('adminDashboardView');
+
+                loginView.classList.remove('scale-100', 'opacity-100');
+                loginView.classList.add('scale-95', 'opacity-0');
+                setTimeout(() => {
+                    loginView.classList.add('hidden');
+                    dashView.classList.remove('hidden');
+                    setTimeout(() => {
+                        dashView.classList.remove('scale-95', 'opacity-0');
+                        dashView.classList.add('scale-100', 'opacity-100');
+                    }, 10);
+                    renderAdminOrdersList();
+                }, 300);
+            } else {
+                errorMsg.classList.remove('hidden');
+            }
+        };
+
+        window.adminLogout = function() {
+            isAdminAuthenticated = false;
+            const dashView = document.getElementById('adminDashboardView');
+            const loginView = document.getElementById('adminLoginView');
+
+            dashView.classList.remove('scale-100', 'opacity-100');
+            dashView.classList.add('scale-95', 'opacity-0');
+            setTimeout(() => {
+                dashView.classList.add('hidden');
+                loginView.classList.remove('hidden');
+                document.getElementById('adminLoginEmail').value = '';
+                document.getElementById('adminLoginPassword').value = '';
+                document.getElementById('adminLoginErrorMsg').classList.add('hidden');
+                setTimeout(() => {
+                    loginView.classList.remove('scale-95', 'opacity-0');
+                    loginView.classList.add('scale-100', 'opacity-100');
+                }, 10);
+            }, 300);
+        };
+
+        window.switchAdminTab = function(tab) {
+            const ordersSec = document.getElementById('adminOrdersSection');
+            const tablesSec = document.getElementById('adminTablesSection');
+            const logoSec = document.getElementById('adminLogoSection');
+            const addSec = document.getElementById('adminAddSection');
+            const manageSec = document.getElementById('adminManageSection');
+            
+            const ordersBtn = document.getElementById('adminTabOrdersBtn');
+            const tablesBtn = document.getElementById('adminTabTablesBtn');
+            const logoBtn = document.getElementById('adminTabLogoBtn');
+            const addBtn = document.getElementById('adminTabAddBtn');
+            const manageBtn = document.getElementById('adminTabManageBtn');
+
+            if (!ordersSec || !tablesSec || !logoSec || !addSec || !manageSec || !ordersBtn || !tablesBtn || !logoBtn || !addBtn || !manageBtn) return;
+
+            // Reset all
+            ordersSec.classList.add('hidden');
+            tablesSec.classList.add('hidden');
+            logoSec.classList.add('hidden');
+            addSec.classList.add('hidden');
+            manageSec.classList.add('hidden');
+
+            const inactiveBtnClass = 'px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-obsidian-900 text-slate-300 hover:text-white border border-emerald-500/20 transition-all flex items-center gap-2 shrink-0';
+            ordersBtn.className = inactiveBtnClass;
+            tablesBtn.className = inactiveBtnClass;
+            logoBtn.className = inactiveBtnClass;
+            addBtn.className = inactiveBtnClass;
+            manageBtn.className = inactiveBtnClass;
+
+            const activeBtnClass = 'px-4 py-2 rounded-xl text-xs sm:text-sm font-extrabold bg-emerald-500 text-obsidian-950 shadow-md transition-all flex items-center gap-2 shrink-0';
+
+            if (tab === 'orders') {
+                ordersSec.classList.remove('hidden');
+                ordersBtn.className = activeBtnClass;
+                renderAdminOrdersList();
+            } else if (tab === 'tables') {
+                tablesSec.classList.remove('hidden');
+                tablesBtn.className = activeBtnClass;
+                renderAdminTablesList();
+            } else if (tab === 'logo') {
+                logoSec.classList.remove('hidden');
+                logoBtn.className = activeBtnClass;
+            } else if (tab === 'add') {
+                addSec.classList.remove('hidden');
+                addBtn.className = activeBtnClass;
+            } else {
+                manageSec.classList.remove('hidden');
+                manageBtn.className = activeBtnClass;
+                renderAdminItemsList();
+            }
+        };
+
+        window.handleSaveLogo = function() {
+            const brandName = document.getElementById('adminBrandNameInput').value.trim() || "Protein Station";
+            const iconClass = document.getElementById('adminLogoIconInput').value.trim() || "fa-bolt";
+            const imgUrl = document.getElementById('adminLogoImgInput').value.trim();
+
+            const titleEl = document.getElementById('headerBrandTitle');
+            titleEl.innerHTML = `
+                ${brandName}
+                <span class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
+                    <i class="fa-solid fa-circle text-[6px] mr-1 animate-pulse text-emerald-400"></i> Basavanagudi
+                </span>
+            `;
+
+            const logoBox = document.getElementById('headerLogoBox');
+            if (imgUrl) {
+                logoBox.innerHTML = `<img src="${imgUrl}" alt="Logo" class="w-full h-full object-cover">`;
+            } else {
+                logoBox.innerHTML = `<i class="fa-solid ${iconClass} text-xl"></i>`;
+            }
+
+            showToast("Restaurant brand and logo updated successfully!");
+        };
+
+        window.renderAdminOrdersList = function() {
+            const container = document.getElementById('adminOrdersContainer');
+            const tabCount = document.getElementById('ordersTabCount');
+            const headerBadge = document.getElementById('adminOrdersBadge');
+
+            tabCount.innerText = liveOrders.length;
+            if (liveOrders.length > 0) {
+                headerBadge.innerText = liveOrders.length;
+                headerBadge.classList.remove('hidden');
+            } else {
+                headerBadge.classList.add('hidden');
+            }
+
+            if (liveOrders.length === 0) {
+                container.innerHTML = `
+                    <div class="text-center py-12 bg-obsidian-900 rounded-2xl border border-emerald-500/10">
+                        <div class="w-12 h-12 bg-obsidian-950 text-slate-500 rounded-full flex items-center justify-center mx-auto mb-3 text-lg border border-emerald-500/10">
+                            <i class="fa-solid fa-receipt"></i>
+                        </div>
+                        <h5 class="text-white font-bold text-sm">No live orders yet</h5>
+                        <p class="text-xs text-slate-400 mt-0.5">Orders placed by customers with table numbers will appear here instantly.</p>
+                    </div>
+                `;
+                return;
+            }
+
+            let html = '';
+            liveOrders.forEach((order, index) => {
+                html += `
+                    <div class="bg-obsidian-900 p-4 rounded-2xl border border-emerald-500/30 space-y-3">
+                        <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 pb-3 border-b border-emerald-500/10">
+                            <div class="flex items-center gap-3">
+                                <span class="bg-emerald-500 text-obsidian-950 text-xs font-black px-2.5 py-1 rounded-lg">${order.id}</span>
+                                <span class="text-xs text-slate-400 font-medium"><i class="fa-regular fa-clock mr-1"></i> ${order.time}</span>
+                            </div>
+                            <div class="flex items-center gap-2 bg-obsidian-950 px-3 py-1.5 rounded-xl border border-emerald-500/30 text-emerald-400 font-bold text-xs">
+                                <i class="fa-solid fa-chair text-xs"></i> ${order.tableNumber}
+                            </div>
+                        </div>
+                        <div class="space-y-1.5 text-xs">
+                `;
+
+                order.items.forEach(item => {
+                    html += `
+                        <div class="flex justify-between text-slate-300">
+                            <span><strong class="text-white">${item.quantity}x</strong> ${item.name}</span>
+                            <span class="font-semibold text-emerald-400">₹${item.price * item.quantity}</span>
+                        </div>
+                    `;
+                });
+
+                html += `
+                        </div>
+                        <div class="pt-3 border-t border-emerald-500/10 flex items-center justify-between">
+                            <span class="text-xs font-extrabold text-white">Total Amount: <span class="text-emerald-400 text-sm">₹${order.total}</span></span>
+                            <button onclick="window.completeOrder(${index})" class="bg-emerald-500 hover:bg-emerald-400 text-obsidian-950 px-3.5 py-1.5 rounded-xl font-extrabold text-xs transition-all flex items-center gap-1.5">
+                                <i class="fa-solid fa-check"></i> Mark Served / Complete
+                            </button>
+                        </div>
+                    </div>
+                `;
+            });
+
+            container.innerHTML = html;
+        };
+
+        window.renderAdminTablesList = function() {
+            const container = document.getElementById('adminTablesContainer');
+            if (!container) return;
+
+            if (liveOrders.length === 0) {
+                container.innerHTML = `
+                    <div class="text-center py-12 bg-obsidian-900 rounded-2xl border border-emerald-500/10">
+                        <div class="w-12 h-12 bg-obsidian-950 text-slate-500 rounded-full flex items-center justify-center mx-auto mb-3 text-lg border border-emerald-500/10">
+                            <i class="fa-solid fa-chair"></i>
+                        </div>
+                        <h5 class="text-white font-bold text-sm">No Active Orders to Assign Tables</h5>
+                        <p class="text-xs text-slate-400 mt-0.5">When orders are placed, you can change their table numbers and locations here.</p>
+                    </div>
+                `;
+                return;
+            }
+
+            const tableOptions = [
+                "Table 1 (Window View)",
+                "Table 2 (Booth)",
+                "Table 3 (Center)",
+                "Table 4 (Family Section)",
+                "Table 5 (High Stool)",
+                "Takeaway"
+            ];
+
+            let html = '';
+            liveOrders.forEach((order, index) => {
+                html += `
+                    <div class="bg-obsidian-900 p-4 rounded-2xl border border-emerald-500/30 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+                        <div>
+                            <div class="flex items-center gap-2 mb-1">
+                                <span class="bg-emerald-500 text-obsidian-950 text-xs font-black px-2.5 py-0.5 rounded">${order.id}</span>
+                                <span class="text-xs text-slate-400">Ordered at ${order.time}</span>
+                            </div>
+                            <p class="text-xs text-slate-300">Items: <strong class="text-white">${order.items.reduce((s, i) => s + i.quantity, 0)} items</strong> (Total ₹${order.total})</p>
+                        </div>
+                        <div class="flex items-center gap-3 w-full sm:w-auto">
+                            <div class="flex items-center gap-2 bg-obsidian-950 px-3.5 py-2 rounded-xl border border-emerald-500/40 w-full sm:w-auto justify-between">
+                                <span class="text-xs text-slate-400 font-semibold"><i class="fa-solid fa-location-dot text-emerald-400 mr-1"></i> Location / Table:</span>
+                                <select onchange="window.updateOrderTable(${index}, this.value)" class="bg-transparent text-emerald-400 font-bold text-xs focus:outline-none cursor-pointer">
+                                    ${tableOptions.map(opt => `<option value="${opt}" ${order.tableNumber === opt ? 'selected' : ''} class="bg-obsidian-950 text-white">${opt}</option>`).join('')}
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            });
+
+            container.innerHTML = html;
+        };
+
+        window.updateOrderTable = function(index, newTable) {
+            if (liveOrders[index]) {
+                liveOrders[index].tableNumber = newTable;
+                showToast(`Order ${liveOrders[index].id} table updated to ${newTable}`);
+                renderAdminTablesList();
+                renderAdminOrdersList();
+            }
+        };
+
+        window.completeOrder = function(index) {
+            liveOrders.splice(index, 1);
+            renderAdminOrdersList();
+            renderAdminTablesList();
+            showToast("Order marked as completed and removed from KDS.");
+        };
+
+        window.renderAdminItemsList = function(filterQuery = '') {
+            const container = document.getElementById('adminItemsListContainer');
+            let html = '';
+
+            menuCategories.forEach(cat => {
+                cat.items.forEach(item => {
+                    if (filterQuery && !item.name.toLowerCase().includes(filterQuery) && !item.desc.toLowerCase().includes(filterQuery)) return;
+
+                    html += `
+                        <div class="bg-obsidian-900 p-4 rounded-2xl border border-emerald-500/20 space-y-3">
+                            <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 pb-3 border-b border-emerald-500/10">
+                                <div class="flex items-center gap-3 w-full sm:w-auto">
+                                    <div class="w-12 h-12 rounded-xl bg-obsidian-950 border border-emerald-500/20 overflow-hidden shrink-0 flex items-center justify-center">
+                                        ${item.image && item.image.trim() !== '' ? `
+                                            <img src="${item.image}" alt="" class="w-full h-full object-cover" onerror="this.src='https://placehold.co/100x100/0f1713/34d399?text=Img';">
+                                        ` : `
+                                            <i class="fa-solid fa-utensils text-emerald-400 text-xs"></i>
+                                        `}
+                                    </div>
+                                    <div class="w-full">
+                                        <input type="text" id="admin-name-${item.id}" value="${item.name}" class="w-full bg-obsidian-950 border border-emerald-500/30 rounded-lg px-2.5 py-1 text-xs text-white font-extrabold focus:outline-none focus:ring-2 focus:ring-emerald-500">
+                                        <span class="text-[10px] text-slate-400 uppercase font-semibold block mt-0.5">${cat.name}</span>
+                                    </div>
+                                </div>
+                                <div class="flex items-center gap-2 w-full sm:w-auto justify-end">
+                                    <button onclick="window.saveAdminItemChanges('${cat.id}', '${item.id}')" class="bg-emerald-500/20 hover:bg-emerald-500 text-emerald-400 hover:text-obsidian-950 border border-emerald-500/30 px-4 py-2 rounded-xl font-extrabold text-xs transition-all flex items-center gap-1.5 shadow-md">
+                                        <i class="fa-solid fa-floppy-disk"></i> Save Changes
+                                    </button>
+                                    <button onclick="window.deleteAdminItem('${cat.id}', '${item.id}')" class="bg-rose-500/10 hover:bg-rose-500 text-rose-400 hover:text-white border border-rose-500/30 px-3 py-2 rounded-xl font-extrabold text-xs transition-all" title="Delete Item">
+                                        <i class="fa-solid fa-trash"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="grid grid-cols-2 sm:grid-cols-4 gap-2">
+                                <div>
+                                    <label class="block text-[10px] font-semibold text-slate-400 mb-1">Price (₹)</label>
+                                    <input type="number" id="admin-price-${item.id}" value="${item.price}" class="w-full bg-obsidian-950 border border-emerald-500/30 rounded-lg px-2.5 py-1.5 text-xs text-white font-black text-center focus:outline-none focus:ring-2 focus:ring-emerald-500">
+                                </div>
+                                <div>
+                                    <label class="block text-[10px] font-semibold text-slate-400 mb-1">Protein (g)</label>
+                                    <input type="number" id="admin-protein-${item.id}" value="${item.protein}" class="w-full bg-obsidian-950 border border-emerald-500/30 rounded-lg px-2.5 py-1.5 text-xs text-emerald-400 font-black text-center focus:outline-none focus:ring-2 focus:ring-emerald-500">
+                                </div>
+                                <div>
+                                    <label class="block text-[10px] font-semibold text-slate-400 mb-1">Calories (kcal)</label>
+                                    <input type="number" id="admin-calories-${item.id}" value="${item.calories}" class="w-full bg-obsidian-950 border border-emerald-500/30 rounded-lg px-2.5 py-1.5 text-xs text-white font-black text-center focus:outline-none focus:ring-2 focus:ring-emerald-500">
+                                </div>
+                                <div>
+                                    <label class="block text-[10px] font-semibold text-slate-400 mb-1">Diet Type</label>
+                                    <select id="admin-type-${item.id}" class="w-full bg-obsidian-950 border border-emerald-500/30 rounded-lg px-2 py-1.5 text-xs text-white font-bold focus:outline-none focus:ring-2 focus:ring-emerald-500">
+                                        <option value="veg" ${item.type === 'veg' ? 'selected' : ''}>Veg</option>
+                                        <option value="nonveg" ${item.type === 'nonveg' ? 'selected' : ''}>Non-Veg</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div>
+                                <label class="block text-[10px] font-semibold text-slate-400 mb-1">Image URL</label>
+                                <input type="text" id="admin-img-${item.id}" value="${item.image || ''}" placeholder="https://images.unsplash.com/..." class="w-full bg-obsidian-950 border border-emerald-500/30 rounded-lg px-2.5 py-1.5 text-xs text-white focus:outline-none focus:ring-2 focus:ring-emerald-500">
+                            </div>
+                            <div>
+                                <label class="block text-[10px] font-semibold text-slate-400 mb-1">Description</label>
+                                <textarea id="admin-desc-${item.id}" rows="2" class="w-full bg-obsidian-950 border border-emerald-500/30 rounded-lg px-2.5 py-1.5 text-xs text-white focus:outline-none focus:ring-2 focus:ring-emerald-500">${item.desc}</textarea>
+                            </div>
+                        </div>
+                    `;
+                });
+            });
+
+            container.innerHTML = html || '<p class="text-center text-xs text-slate-500 py-6">No items found</p>';
+        };
+
+        window.saveAdminItemChanges = function(catId, itemId) {
+            const nameInput = document.getElementById(`admin-name-${itemId}`);
+            const priceInput = document.getElementById(`admin-price-${itemId}`);
+            const proteinInput = document.getElementById(`admin-protein-${itemId}`);
+            const caloriesInput = document.getElementById(`admin-calories-${itemId}`);
+            const typeInput = document.getElementById(`admin-type-${itemId}`);
+            const imgInput = document.getElementById(`admin-img-${itemId}`);
+            const descInput = document.getElementById(`admin-desc-${itemId}`);
+
+            const newName = nameInput.value.trim();
+            const newPrice = parseFloat(priceInput.value);
+            const newProtein = parseFloat(proteinInput.value);
+            const newCalories = parseFloat(caloriesInput.value);
+            const newType = typeInput.value;
+            const newImg = imgInput.value.trim();
+            const newDesc = descInput.value.trim();
+
+            if (!newName || isNaN(newPrice)) {
+                showToast("Please enter a valid Name and Price.");
+                return;
+            }
+
+            for (let cat of menuCategories) {
+                if (cat.id === catId) {
+                    for (let item of cat.items) {
+                        if (item.id === itemId) {
+                            item.name = newName;
+                            item.price = newPrice;
+                            item.protein = isNaN(newProtein) ? item.protein : newProtein;
+                            item.calories = isNaN(newCalories) ? item.calories : newCalories;
+                            item.type = newType;
+                            item.image = newImg;
+                            item.desc = newDesc;
+                        }
+                    }
+                }
+            }
+
+            renderMenu();
+            renderAdminItemsList(document.getElementById('adminSearchInput').value.toLowerCase());
+            showToast("Item details successfully updated!");
+        };
+
+        window.deleteAdminItem = function(catId, itemId) {
+            if (!confirm("Are you sure you want to remove this dish from the menu?")) return;
+
+            for (let cat of menuCategories) {
+                if (cat.id === catId) {
+                    cat.items = cat.items.filter(item => item.id !== itemId);
+                }
+            }
+
+            renderMenu();
+            renderAdminItemsList(document.getElementById('adminSearchInput').value.toLowerCase());
+            showToast("Item removed from menu.");
+        };
+
+        window.handleAddNewItem = function() {
+            const name = document.getElementById('newDishName').value.trim();
+            const catId = document.getElementById('newDishCategory').value;
+            const price = parseFloat(document.getElementById('newDishPrice').value);
+            const type = document.getElementById('newDishType').value;
+            const protein = parseFloat(document.getElementById('newDishProtein').value) || 20;
+            const calories = parseFloat(document.getElementById('newDishCalories').value) || 350;
+            const image = document.getElementById('newDishImage').value.trim();
+            const desc = document.getElementById('newDishDesc').value.trim() || "Freshly prepared healthy meal crafted with organic ingredients.";
+
+            if (!name || isNaN(price)) {
+                showToast("Please enter a valid Dish Name and Price.");
+                return;
+            }
+
+            const newId = 'custom-' + Date.now();
+            const newItem = {
+                id: newId,
+                name: name,
+                price: price,
+                type: type,
+                rating: "5.0",
+                reviews: 1,
+                protein: protein,
+                calories: calories,
+                image: image,
+                desc: desc
+            };
+
+            for (let cat of menuCategories) {
+                if (cat.id === catId) {
+                    cat.items.unshift(newItem);
+                }
+            }
+
+            // Clear form
+            document.getElementById('newDishName').value = '';
+            document.getElementById('newDishPrice').value = '';
+            document.getElementById('newDishProtein').value = '';
+            document.getElementById('newDishCalories').value = '';
+            document.getElementById('newDishImage').value = '';
+            document.getElementById('newDishDesc').value = '';
+
+            renderMenu();
+            renderAdminItemsList();
+            window.toggleAdminModal();
+            showToast("New dish added successfully!");
+        };
+
+        // Global Window Exposure for Event Handlers
+        window.setDietFilter = function(filter) {
+            currentDietFilter = filter;
+            ['filterAll', 'filterVeg', 'filterNonVeg'].forEach(id => {
+                const el = document.getElementById(id);
+                if (el) {
+                    el.className = 'px-3.5 py-1.5 rounded-lg bg-obsidian-900 border border-emerald-500/20 hover:bg-obsidian-800 text-slate-300 transition-all';
+                }
+            });
+            const activeId = filter === 'all' ? 'filterAll' : (filter === 'veg' ? 'filterVeg' : 'filterNonVeg');
+            const activeEl = document.getElementById(activeId);
+            if (activeEl) {
+                activeEl.className = 'px-3.5 py-1.5 rounded-lg bg-emerald-500 text-obsidian-950 transition-all font-bold shadow-md shadow-emerald-500/20';
+            }
+            renderMenu();
+        };
+
+        window.toggleMacroModal = function() {
+            const modal = document.getElementById('macroModal');
+            const content = document.getElementById('macroModalContent');
+            if (modal.classList.contains('hidden')) {
+                modal.classList.remove('hidden');
+                setTimeout(() => {
+                    content.classList.remove('scale-95', 'opacity-0');
+                    content.classList.add('scale-100', 'opacity-100');
+                }, 10);
+            } else {
+                content.classList.remove('scale-100', 'opacity-100');
+                content.classList.add('scale-95', 'opacity-0');
+                setTimeout(() => modal.classList.add('hidden'), 300);
+            }
+        };
+
+        window.switchCalcMode = function(mode) {
+            activeCalcMode = mode;
+            const workoutBtn = document.getElementById('modeWorkoutBtn');
+            const familyBtn = document.getElementById('modeFamilyBtn');
+            const workoutSec = document.getElementById('workoutModeSection');
+            const familySec = document.getElementById('familyModeSection');
+
+            if (mode === 'workout') {
+                workoutBtn.className = 'py-2.5 px-4 rounded-xl text-xs sm:text-sm font-extrabold transition-all bg-emerald-500 text-obsidian-950 shadow-md flex items-center justify-center gap-2';
+                familyBtn.className = 'py-2.5 px-4 rounded-xl text-xs sm:text-sm font-semibold transition-all text-slate-300 hover:text-white flex items-center justify-center gap-2';
+                workoutSec.classList.remove('hidden');
+                familySec.classList.add('hidden');
+            } else {
+                familyBtn.className = 'py-2.5 px-4 rounded-xl text-xs sm:text-sm font-extrabold transition-all bg-emerald-500 text-obsidian-950 shadow-md flex items-center justify-center gap-2';
+                workoutBtn.className = 'py-2.5 px-4 rounded-xl text-xs sm:text-sm font-semibold transition-all text-slate-300 hover:text-white flex items-center justify-center gap-2';
+                familySec.classList.remove('hidden');
+                workoutSec.classList.add('hidden');
+            }
+        };
+
+        window.calculateAndRecommend = function() {
+            let allItems = [];
+            menuCategories.forEach(cat => allItems.push(...cat.items));
+
+            let selected = [];
+            let currentCost = 0;
+            let currentProtein = 0;
+            let totalCalories = 0;
+
+            if (activeCalcMode === 'workout') {
+                const weight = parseFloat(document.getElementById('calcWeightWorkout').value) || 70;
+                const goal = document.getElementById('calcGoalWorkout').value;
+                const budget = parseFloat(document.getElementById('calcBudgetWorkout').value) || 600;
+
+                let proteinMultiplier = 1.6;
+                if (goal === 'muscle') proteinMultiplier = 2.0;
+                if (goal === 'loss') proteinMultiplier = 2.2;
+
+                const targetProtein = Math.round(weight * proteinMultiplier);
+                const targetCalories = goal === 'loss' ? Math.round(weight * 26) : Math.round(weight * 32);
+
+                allItems.sort((a, b) => (b.protein / b.price) - (a.protein / a.price));
+
+                for (let item of allItems) {
+                    if (currentCost + item.price <= budget && currentProtein < targetProtein) {
+                        selected.push(item);
+                        currentCost += item.price;
+                        currentProtein += item.protein;
+                        totalCalories += item.calories;
+                    }
+                }
+
+                lastRecommendedItems = selected;
+
+                document.getElementById('metric1Label').innerText = "Target Protein";
+                document.getElementById('metric2Label').innerText = "Target Calories";
+                document.getElementById('targetProteinText').innerText = `${targetProtein}g`;
+                document.getElementById('targetCaloriesText').innerText = `${targetCalories} kcal`;
+                document.getElementById('targetCostText').innerText = `₹${budget}`;
+                document.getElementById('recommendationsHeaderTitle').innerText = "2. Recommended Workout Meal Stack";
+
+            } else {
+                const familySize = parseInt(document.getElementById('calcFamilySize').value) || 2;
+                const dietPref = document.getElementById('calcFamilyDiet').value;
+
+                let filteredPool = allItems;
+                if (dietPref === 'veg') {
+                    filteredPool = allItems.filter(i => i.type === 'veg');
+                }
+
+                let starters = filteredPool.filter(i => i.id.includes('soup') || i.id.includes('tan') || i.id.includes('sizz'));
+                let mains = filteredPool.filter(i => i.id.includes('ric') || i.id.includes('chk') || i.id.includes('inh') || i.id.includes('snd'));
+                let shakes = filteredPool.filter(i => i.id.includes('brw'));
+
+                let chosen = [];
+                if (starters.length > 0) chosen.push(starters[Math.floor(Math.random() * starters.length)]);
+                if (mains.length > 0) {
+                    chosen.push(mains[0]);
+                    if (familySize > 2 && mains.length > 1) chosen.push(mains[1]);
+                }
+                if (shakes.length > 0 && familySize >= 2) chosen.push(shakes[Math.floor(Math.random() * shakes.length)]);
+
+                selected = Array.from(new Set(chosen));
+                currentCost = selected.reduce((sum, i) => sum + i.price * (familySize > 3 ? 2 : 1), 0);
+                currentProtein = selected.reduce((sum, i) => sum + i.protein, 0);
+                totalCalories = selected.reduce((sum, i) => sum + i.calories, 0);
+
+                lastRecommendedItems = selected;
+
+                document.getElementById('metric1Label').innerText = "Family Protein";
+                document.getElementById('metric2Label').innerText = "Family Calories";
+                document.getElementById('targetProteinText').innerText = `${currentProtein}g Total`;
+                document.getElementById('targetCaloriesText').innerText = `${totalCalories} kcal`;
+                document.getElementById('targetCostText').innerText = `${familySize} Members`;
+                document.getElementById('recommendationsHeaderTitle').innerText = "2. Recommended Family Feast Combo";
+            }
+
+            document.getElementById('comboCostBadge').innerText = `Total: ₹${currentCost}`;
+
+            const listEl = document.getElementById('recommendedItemsList');
+            listEl.innerHTML = lastRecommendedItems.map(item => `
+                <div class="flex items-center justify-between bg-obsidian-900 p-3 rounded-xl border border-emerald-500/20 text-xs">
+                    <div class="flex items-center gap-2.5">
+                        <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+                        <span class="font-bold text-white text-sm">${item.name}</span>
+                    </div>
+                    <div class="flex items-center gap-4 font-semibold">
+                        <span class="text-emerald-400"><i class="fa-solid fa-dumbbell text-[10px] mr-1"></i> ${item.protein}g Protein</span>
+                        <span class="text-slate-200">₹${item.price}</span>
+                    </div>
+                </div>
+            `).join('');
+
+            // Show separate sections
+            document.getElementById('macroResultsCard').classList.remove('hidden');
+            document.getElementById('recommendationsSection').classList.remove('hidden');
+        };
+
+        window.addAllRecommendedToCart = function() {
+            if (lastRecommendedItems.length === 0) return;
+            lastRecommendedItems.forEach(item => {
+                if (cart[item.id]) {
+                    cart[item.id].quantity += 1;
+                } else {
+                    cart[item.id] = { item: item, quantity: 1 };
+                }
+            });
+            renderMenu();
+            updateCartUI();
+            window.toggleMacroModal();
+            window.toggleCart();
+            showToast("Added AI meal combination to cart!");
+        };
+
+        function findItem(itemId) {
+            for (let cat of menuCategories) {
+                for (let item of cat.items) {
+                    if (item.id === itemId) return item;
+                }
+            }
+            return null;
+        }
+
+        window.addToCart = function(itemId) {
+            const item = findItem(itemId);
+            if (!item) return;
+
+            if (cart[itemId]) {
+                cart[itemId].quantity += 1;
+            } else {
+                cart[itemId] = { item: item, quantity: 1 };
+            }
+
+            renderMenu();
+            updateCartUI();
+            showToast(`Added ${item.name} to bag`);
+        };
+
+        window.updateQuantity = function(itemId, change) {
+            if (!cart[itemId]) return;
+            cart[itemId].quantity += change;
+            if (cart[itemId].quantity <= 0) {
+                delete cart[itemId];
+            }
+            renderMenu();
+            updateCartUI();
+        };
+
+        window.toggleCart = function() {
+            const drawer = document.getElementById('cartDrawer');
+            const backdrop = document.getElementById('cartBackdrop');
+            
+            if (drawer.classList.contains('translate-x-full')) {
+                drawer.classList.remove('translate-x-full');
+                backdrop.classList.remove('hidden');
+                setTimeout(() => backdrop.classList.remove('opacity-0'), 10);
+            } else {
+                drawer.classList.add('translate-x-full');
+                backdrop.classList.add('opacity-0');
+                setTimeout(() => backdrop.classList.add('hidden'), 300);
+            }
+        };
+
+        function updateCartUI() {
+            let totalCount = 0;
+            let subtotal = 0;
+            let totalProtein = 0;
+
+            const listEl = document.getElementById('cartItemsList');
+            let cartHtml = '';
+            const keys = Object.keys(cart);
+
+            if (keys.length === 0) {
+                listEl.innerHTML = `
+                    <div class="text-center py-16">
+                        <div class="w-20 h-20 bg-obsidian-950 text-emerald-500/40 rounded-full flex items-center justify-center mx-auto mb-4 text-3xl border border-emerald-500/20">
+                            <i class="fa-solid fa-cart-shopping"></i>
+                        </div>
+                        <h4 class="font-bold text-white text-base mb-1">Your bag is empty</h4>
+                        <p class="text-xs text-slate-400">Add protein-packed meals or protein shakes to start your order.</p>
+                    </div>
+                `;
+            } else {
+                keys.forEach(id => {
+                    const entry = cart[id];
+                    totalCount += entry.quantity;
+                    subtotal += entry.item.price * entry.quantity;
+                    totalProtein += entry.item.protein * entry.quantity;
+                    const isVeg = entry.item.type === 'veg';
+
+                    cartHtml += `
+                        <div class="py-3 flex items-center justify-between gap-3">
+                            <div class="flex items-center gap-2.5">
+                                <span class="w-3.5 h-3.5 rounded border ${isVeg ? 'border-emerald-500 flex items-center justify-center p-0.5' : 'border-rose-500 flex items-center justify-center p-0.5'} shrink-0">
+                                    <span class="w-1.5 h-1.5 rounded-full ${isVeg ? 'bg-emerald-500' : 'bg-rose-500'}"></span>
+                                </span>
+                                <div>
+                                    <h5 class="font-extrabold text-white text-sm leading-snug">${entry.item.name}</h5>
+                                    <span class="text-xs text-emerald-400 font-semibold">${entry.item.protein}g Protein • ₹${entry.item.price}</span>
+                                </div>
+                            </div>
+                            <div class="flex items-center gap-3 shrink-0">
+                                <div class="flex items-center bg-obsidian-950 border border-emerald-500/20 rounded-lg overflow-hidden font-bold">
+                                    <button onclick="window.updateQuantity('${id}', -1)" class="px-2.5 py-1 text-slate-300 hover:bg-obsidian-800 transition-colors text-xs">
+                                        <i class="fa-solid fa-minus"></i>
+                                    </button>
+                                    <span class="px-2.5 py-1 text-xs font-black text-white">${entry.quantity}</span>
+                                    <button onclick="window.updateQuantity('${id}', 1)" class="px-2.5 py-1 text-slate-300 hover:bg-obsidian-800 transition-colors text-xs">
+                                        <i class="fa-solid fa-plus"></i>
+                                    </button>
+                                </div>
+                                <span class="font-extrabold text-sm text-white w-14 text-right">₹${entry.item.price * entry.quantity}</span>
+                            </div>
+                        </div>
+                    `;
+                });
+                listEl.innerHTML = cartHtml;
+            }
+
+            const badge = document.getElementById('cartCountBadge');
+            badge.innerText = totalCount;
+
+            document.getElementById('cartTotalProtein').innerText = `${totalProtein}g Protein`;
+            document.getElementById('cartTotal').innerText = `₹${subtotal}`;
+        }
+
+        window.checkoutOrder = function() {
+            const keys = Object.keys(cart);
+            if (keys.length === 0) {
+                showToast("Please add items to your cart first.");
+                return;
+            }
+
+            const tableNumber = document.getElementById('tableNumberSelect').value;
+            let subtotal = 0;
+            let orderItems = [];
+
+            keys.forEach(id => {
+                const entry = cart[id];
+                subtotal += entry.item.price * entry.quantity;
+                orderItems.push({
+                    name: entry.item.name,
+                    quantity: entry.quantity,
+                    price: entry.item.price
+                });
+            });
+
+            const randomId = '#PS-' + Math.floor(1000 + Math.random() * 9000);
+            const nowTime = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+
+            // Push to live orders for admin
+            liveOrders.unshift({
+                id: randomId,
+                tableNumber: tableNumber,
+                items: orderItems,
+                total: subtotal,
+                time: nowTime
+            });
+
+            renderAdminOrdersList();
+            renderAdminTablesList();
+
+            window.toggleCart();
+
+            document.getElementById('orderIdText').innerText = randomId;
+            document.getElementById('confirmedTableText').innerText = tableNumber;
+
+            const modal = document.getElementById('successModal');
+            const content = document.getElementById('successModalContent');
+            modal.classList.remove('hidden');
+            setTimeout(() => {
+                content.classList.remove('scale-95', 'opacity-0');
+                content.classList.add('scale-100', 'opacity-100');
+            }, 10);
+
+            cart = {};
+            renderMenu();
+            updateCartUI();
+        };
+
+        window.closeSuccessModal = function() {
+            const modal = document.getElementById('successModal');
+            const content = document.getElementById('successModalContent');
+            content.classList.remove('scale-100', 'opacity-100');
+            content.classList.add('scale-95', 'opacity-0');
+            setTimeout(() => modal.classList.add('hidden'), 300);
+        };
+
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            document.getElementById('toastMessage').innerText = message;
+            toast.classList.remove('opacity-0', 'pointer-events-none', 'translate-y-4');
+            toast.classList.add('opacity-100', 'translate-y-0');
+
+            setTimeout(() => {
+                toast.classList.remove('opacity-100', 'translate-y-0');
+                toast.classList.add('opacity-0', 'pointer-events-none', 'translate-y-4');
+            }, 2500);
+        }
+    </script>
+</body>
+</html>
